@@ -9,4 +9,4 @@ const hashData = async (data, saltRounds = 10) => {
   }
 };
 
-module.exports = { hashData };
+module.exports = hashData;

@@ -1,13 +1,10 @@
 const express = require("express");
+const createNewUser = require("./controller");
 const router = express.Router();
 
 router.post("/signup", async (req, res) => {
   try {
     let { name, email, password } = req.body;
-
-    name = name.trim();
-    email = email.trim();
-    password = password.trim();
 
     if (!name && !email && !password) {
       throw new Error("Empty Error Fields");

@@ -1,17 +1,17 @@
-const User = require("model");
+const User = require("./model");
+const hashData = require("../../utils/hashData");
 
 const createNewUser = async (data) => {
   try {
     const { email, password, name } = data;
-
     const doesUserExist = await User.findOne({
       email,
     });
 
     if (doesUserExist) {
-      throw new Error("User with this email already exist");
+      return { success: false, messafge: "User already exists" };
     } else {
-      const hashedPassword = await hasData(password);
+      const hashedPassword = await hashData(password);
 
       const user = new User({
         name,
@@ -29,4 +29,4 @@ const createNewUser = async (data) => {
   }
 };
 
-module.export = { createNewUser };
+module.exports = createNewUser;
